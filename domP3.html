@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            color: white;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            
+        }
+        #main{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        #main h1{
+            font-size: 10vw;
+            font-weight: 900;
+            /* position: absolute; */
+        }
+        #cursor{
+            background-color: white;
+            width: 30px;
+            height: 30px;
+            mix-blend-mode: difference;
+            border-radius: 50%;
+            position: absolute;
+            transition: all linear .2s ;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1>Ibraheem</h1>
+        <div id="cursor"></div>
+    </div>
+
+    <script>
+        var main    = document.querySelector("#main");
+        var cursor  = document.querySelector("#cursor");
+
+        main.addEventListener("mousemove", function(move){
+            // console.log("MAin hoon khokhar");
+            cursor.style.left = move.x + "px";
+            cursor.style.top = move.y + "px";
+        });
+
+    </script>
+    
+</body>
+</html>

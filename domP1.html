@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1 - DOM</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: seagreen;
+            display: flex;
+            justify-content: center;
+            /* align-content: center; */
+        }
+        #rectangle{
+            background-color: black;
+            color: white;
+            width: 700px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #rectangle h1{
+            font-size: 25px;
+            padding: 65px 0px;
+        }
+        #getBtn{
+            font-size: 20px;
+            color: rgb(39, 58, 1);
+            background-color: aqua;
+            border: 1px solid black;
+            border-radius: 4px;
+            padding: 5px 20px;
+            margin: 10px 0px;
+            cursor: pointer;
+        }
+        #getBtn:hover{
+            scale: 1.05;
+            /* timeline-scope: 1s; */
+            
+        }
+        #display{
+            width: 400px;
+            height: 50px;
+            background-color: rgb(94, 163, 124);
+            margin: 50px 0px;
+            /* padding: px; */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="rectangle">
+        <h1>Get your five friends contact number by click on<span style="color: yellow;"> "Get"</span></h1>
+        <button id="getBtn">Get Phon NO</button>
+        <div id="display"></div>
+    </div>
+    
+    <script>
+        var contacts = {
+            Lord_Puneet : 374863 ,
+            Thara_Bhai_juginder : 324345 ,
+            Munna_Bhaiya : 334232 ,
+            Thripathi : 342343 ,
+            Babbu_gee : 342462
+        };
+        var getBtn = document.getElementById("getBtn");
+        var display = document.getElementById("display");
+        var contact = 1;
+        getBtn.addEventListener("click", function(){
+            if(contact == 1){
+                display.innerHTML = (`Lord Puneet : ${contacts.Lord_Puneet}`);
+                getBtn.innerHTML = "Get Thara Bhai";
+                contact = 2;
+            }
+            else if(contact == 2){
+                display.innerHTML = (`Thara Bhai Juginder : ${contacts.Thara_Bhai_juginder}`);
+                getBtn.innerHTML = "Get Munna Bhaiya";
+                contact = 3;
+            }
+            else if(contact == 3){
+                display.innerHTML = (`Munna Bhaiya : ${contacts.Munna_Bhaiya}`);
+                getBtn.innerHTML = "Get Thripathi";
+                contact = 4;
+            }
+            else if(contact == 4){
+                display.innerHTML = (`Thripathi : ${contacts.Thripathi}`);
+                getBtn.innerHTML = "Get Babbu Gee";
+                contact = 5;
+            }
+            else if(contact == 5){
+                display.innerHTML = (`Babbu Gee : ${contacts.Babbu_gee}`);
+                getBtn.innerHTML = "Get Lord Puneet";
+                contact = 1;
+            }
+        })
+    </script>
+</body>
+</html>

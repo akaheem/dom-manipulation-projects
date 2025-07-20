@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM - Project 4</title>
+
+    <style>
+        *{
+            color: white;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+            background-color: #111;
+            position: relative;
+            mix-blend-mode: difference;
+        }
+        .elem{
+            height: 80px;
+            position: relative;
+            border-bottom: 2px solid red;
+            display: flex;
+            align-items: center;
+        }
+        .elem h1{
+            font-size: 6vw;
+            font-weight: 900;
+            display: flex;
+            align-items: flex-start;
+            position: absolute;
+        }
+        .elem img{
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            align-items: flex-start;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: all linear 0.5s;  
+        }
+        #imgHover   {
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="elem">
+            <h1>Roman Reign</h1>
+            <img src="domP41.png">
+        </div>
+        <div class="elem">
+            <h1>Tom Holland</h1>
+            <img src="domP42.png">
+        </div>
+        <div class="elem">
+            <h1>Chris Evans</h1>
+            <img src="domP43.png">
+        </div>
+        <div class="elem">
+            <h1>Robert Downey</h1>
+            <img src="domP44.png">
+        </div>
+    </div>
+
+    <script>
+        var elem = document.querySelectorAll(".elem");
+        elem.forEach(function(val){
+            val.addEventListener("mouseenter", function(){
+                val.childNodes[3].style.opacity=1;
+            });
+            val.addEventListener("mousemove", function(dets){
+                val.childNodes[3].style.top= dets.y+"px";
+                val.childNodes[3].style.left= dets.x+"px";
+            });
+
+            val.addEventListener("mouseleave", function(){
+                val.childNodes[3].style.opacity = 0;
+            });
+        });
+    </script>
+</body>
+</html>

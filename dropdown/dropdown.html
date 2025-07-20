@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <title>Drop-Down</title>
+
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .select {
+      margin-top: 15px;
+      width: 100%;
+      background: rgb(233, 134, 157);
+      border: solid 2px rgb(233, 134, 157);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    select:hover {
+      background: #23242f;
+    }
+
+    .caret {
+      width: 0px;
+      height: 0px;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 8px solid;
+      transition: .3s;
+      margin-left: 4px;
+    }
+
+    .menu {
+      background-color: rgb(233, 134, 107);
+      list-style: none;
+      padding: 12px;
+      border: 5px solid rgb(233, 134, 107);
+      border-radius: 6px;
+      position: absolute;
+      width: 90px;
+      top: 3em;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      opacity: 0;
+      transition: .2s;
+      z-index: 1;
+    }
+
+    .menu li {
+      cursor: pointer;
+      position: relative;
+    }
+
+    li:hover {
+      background: rgb(233, 134, 107);
+    }
+
+    .menu-open {
+      display: block;
+      opacity: 1;
+    }
+
+    .select-clicked {
+      background-color: rgb(41, 47, 59);
+      border: 2px solid rgb(41, 47, 59);
+      box-shadow: 0px 0px 0px 6px rgb(41, 47, 59);
+    }
+
+    .caret-rotate {
+      transform: rotate(180deg);
+      transition: 0.7s;
+    }
+
+    .subMenu {
+      width: 100px;
+      background-color: rgb(233, 134, 107);
+      list-style: none;
+      padding: 8px;
+      border: 3px solid rgb(233, 134, 107);
+      border-radius: 4px;
+      position: absolute;
+      top: 0%;
+      left: 100%;
+      transform: translateX(10px);
+      display: none;
+      transition: .2s;
+      z-index: 1;
+    }
+
+    .subMenu-open {
+      display: block;
+    }
+
+    .subMenu li:hover {
+      background: rgb(233, 134, 107);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dropdown">
+    <div class="select">
+      <span class="selected">JavaScript</span>
+      <div class="caret"></div>
+    </div>
+    <ul class="menu">
+      <li>Express.js
+        <ul class="subMenu">
+          <li>SSR</li>
+          <li>FED</li>
+          <li>SCR</li>
+        </ul>
+      </li>
+      <li class="active">React.js</li>
+      <li>Angular.js</li>
+      <li>Nord.js</li>
+      <li>Next.js</li>
+    </ul>
+  </div>
+
+  <script>
+    const dropdown = document.querySelector('.dropdown');
+    const select = dropdown.querySelector('.select');
+    const selected = dropdown.querySelector('.selected');
+    const caret = dropdown.querySelector('.caret');
+    const menu = dropdown.querySelector('.menu');
+    const options = menu.querySelectorAll('.menu li');
+    const submenus = menu.querySelectorAll('.subMenu');
+
+    select.addEventListener('click', () => {
+      select.classList.toggle('select-clicked');
+      caret.classList.toggle('caret-rotate');
+      menu.classList.toggle('menu-open');
+    });
+
+    options.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event from bubbling up
+
+        // Close other submenus
+        submenus.forEach(submenu => submenu.classList.remove('subMenu-open'));
+
+        if (option.querySelector('.subMenu')) {
+          // Show submenu
+          const submenu = option.querySelector('.subMenu');
+          submenu.classList.toggle('subMenu-open');
+          selected.innerText = option.childNodes[0].textContent.trim();
+        } else {
+          selected.innerText = option.innerText;
+          select.classList.remove('select-clicked');
+          caret.classList.remove('caret-rotate');
+          menu.classList.remove('menu-open');
+
+          options.forEach(opt => {
+            opt.classList.remove('selected');
+          });
+          option.classList.add('selected');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

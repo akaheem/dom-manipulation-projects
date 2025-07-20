@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body{
+            padding: 0%;
+            margin: 0%;
+            box-sizing: border-box;
+            color: white;
+            font-size: 25px;
+                        /* font-family:Verdana, Geneva, Tahoma, sans-serif; */
+
+        }
+        .table{
+            background-image: url(coffee_table.jpeg);
+            background-size: 100vw 100vh;
+            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }
+        table{
+            padding: 12px 18px;
+            background-color: rgba(0, 255, 255,0.5);
+            color: rgba(0,0,0,1);
+        }
+        th{
+            /* padding-right: 140px; */
+            width: 200px;
+            margin: 0px;
+            padding: 15px 0px;
+            font-size: 32px;
+        }
+        td{
+            
+        }
+        input{
+            height: 25px;
+            width: 200px;
+            font-size: 18px;
+            font-weight: 600;
+            color: blue;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        button{
+            font-size: 18px;
+            padding: 8px 12px;
+            background-color: skyblue;
+            border-radius: 6px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-weight: 500;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .price{
+            text-align: center;
+        }
+    </style>
+
+
+    <title>Coffee- Table</title>
+</head>
+<body>
+    <div class="table">
+        <table>
+            <tr>    
+                <th style="text-align: left;">Coffee Name</th>
+                <th>Price &dollar;</th>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <td>Latte</td>
+                <td class="price" data-value="27">27</td>
+                <td><input type="number" class="input" placeholder="00"></td>
+            </tr>
+            <tr>
+                <td>Cortado</td>
+                <td class="price" data-value="21">21</td>
+                <td><input type="number" class="input" placeholder="00"></td>
+            </tr>
+            <tr>
+                <td>Ristretto</td>
+                <td class="price" data-value="19">19</td>
+                <td><input type="number" class="input" placeholder="00"></td>
+            </tr>
+            <tr>
+                <td>Espresso Lungo</td>
+                <td class="price" data-value="15">15</td>
+                <td><input type="number" class="input" placeholder="00"></td>
+            </tr>
+            <tr>
+                <td>Doppio</td>
+                <td class="price" data-value="17">17</td>
+                <td><input type="number" class="input" placeholder="00"></td>
+            </tr> <tr></tr><tr></tr><tr><tr></tr></tr>
+            <tr>
+                <td></td>
+                <td><button onclick="result()">Result</button></td>
+                <td><input type="number" placeholder="00" id="output"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- <script>
+        const table = document.querySelectorAll('.table');
+        const input = document.querySelectorAll('.input');
+        const price = document.querySelectorAll('.price');
+        const output = document.getElementById('#output');
+
+        function result(){
+            // input = parseInt(document.querySelector('.input'))
+            // price = parseInt(document.querySelector('.price'))
+            output = input * price;
+            document.getElementById('#output').value = output;
+        }
+
+       
+
+    </script> -->
+    
+    <script>
+        const inputs = document.querySelectorAll('.input');
+        const prices = document.querySelectorAll('.price');
+        const output = document.getElementById("output");
+
+        function result(){
+            let result = 0;
+            inputs.forEach((input, index) => {
+                const quantity = input.value;
+                const rate = prices[index].dataset.value;
+                result += quantity * rate;
+            });
+            output.value = result;
+        }
+    </script>
+</body>
+</html>

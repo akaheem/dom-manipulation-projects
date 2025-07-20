@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket System</title>
+    <link rel="stylesheet" href="Online_Ticket.css">
+</head>
+<body>
+    <div class="contain">
+        <form onsubmit="displayInfo(event)">
+            <h1>Online Ticket Booking</h1>
+            <h3>Name:</h3>
+            <input type="text" placeholder="Ibraheem" id="name" required>
+            <h3>Movie Name:</h3>
+            <input type="text" placeholder="Thor (Ragnarok)" id="movieName" required>
+            <h3>Persons:</h3>
+            <input type="number" placeholder="Enter Only Digital Value" id="persons" required>
+            <button type="submit">Submit</button>
+            <div class="output">
+                <p id="nameOutput"></p>
+                <p id="movieNameOutput"></p>
+                <p id="personsOutput"></p>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+    var names = [];
+    var movieNames = [];
+    var persons = [];
+
+    function displayInfo(event) {
+        event.preventDefault(); // Prevent form submission and refresh
+
+        var name = document.getElementById('name').value;
+        var movieName = document.getElementById('movieName').value;
+        var personCount = document.getElementById('persons').value;
+
+        // Add new values to the arrays
+        names.push(name);
+        movieNames.push(movieName);
+        persons.push(personCount);
+
+        // Display the results
+        document.getElementById('nameOutput').innerHTML = "<strong>Name: </strong>" + names.join(', ');
+        document.getElementById('movieNameOutput').innerHTML = "<strong>Movie Name: </strong>" + movieNames.join(', ');
+        document.getElementById('personsOutput').innerHTML = "<strong>Persons: </strong>" + persons.join(', ');
+
+        // Clear the form
+        document.getElementById('name').value = '';
+        document.getElementById('movieName').value = '';
+        document.getElementById('persons').value = '';
+    }
+    </script>
+</body>
+</html>
